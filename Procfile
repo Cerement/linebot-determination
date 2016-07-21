@@ -1,1 +1,1 @@
-python linebot.py
+web: python linebot.py
