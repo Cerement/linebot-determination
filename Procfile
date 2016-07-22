@@ -1,1 +1,1 @@
-web: python linebot.py
+web: python manage.py runserver 0.0.0.0:443
