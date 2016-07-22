@@ -12,4 +12,4 @@ credentials = {
 client = LineBotClient(**credentials)
 
 def messageHandler(request):
-    return HttpResponse(request.get_data())
+    return HttpResponse('Hello!')
