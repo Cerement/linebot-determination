@@ -1,4 +1,5 @@
 from linebot.client import LineBotClient
+from django.http import HttpResponse
 
 import os
 
@@ -10,3 +11,5 @@ credentials = {
 
 client = LineBotClient(**credentials)
 
+def messageHandler(request):
+    return HttpResponse(request.get_data())
