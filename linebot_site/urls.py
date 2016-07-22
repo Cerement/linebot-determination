@@ -19,6 +19,6 @@ from django.conf.urls import url
 import bot
 
 urlpatterns = [
-    url(r'^callback/$', bot.messageHandler),
+    url(r'^callback$', bot.messageHandler),
     #url(r'^admin/', admin.site.urls),
 ]
