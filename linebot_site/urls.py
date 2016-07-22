@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 #from django.contrib import admin
 
-from . import bot
+from .. import bot
 
 urlpatterns = [
     url(r'^callback$', bot.messageHandler),
