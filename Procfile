@@ -1,1 +1,1 @@
-web: gunicorn linebot_site.wsgi
+web: gunicorn linebot_site.wsgi --log-file -
