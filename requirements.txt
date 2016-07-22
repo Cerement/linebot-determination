@@ -4,3 +4,4 @@ gunicorn==19.6.0
 psycopg2==2.6.1
 whitenoise==3.2
 enum34==1.1.6
+requests==2.8.1
