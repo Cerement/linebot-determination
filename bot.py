@@ -1,5 +1,6 @@
 from linebot.client import LineBotClient
 from linebot.receives import Receive
+from linebot import messages
 from django.http import HttpResponse
 
 import os
@@ -20,18 +21,23 @@ def messageHandler(request):
     elif request.method == 'POST':
         pass
     
-    # get the sender's mid and message
+    # for each message
     receive = Receive(request.body)
-    print(receive[0])
-    return HttpResponse()
-    """
-    midSender = receive[0].to_mid
-    msgSender = receive[0].message
-    
-    # construct the reply
-    reply = msgSender
-    
-    # send the reply
-    client.send_text(midSender, reply)
-    """
+    for message in receive:
+        
+        # get sender's mid
+        midSender = message['from_mid']
+        
+        # for text messages
+        if isinstance(message['content'], messages.TextMessage):
+            
+            # get the sender's mid and message
+            msgSender = receive['content']['text']
+            
+            # construct the reply
+            reply = msgSender
+            
+            # send the reply
+            client.send_text(midSender, reply)
+            
     
