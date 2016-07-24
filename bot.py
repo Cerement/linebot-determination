@@ -38,6 +38,6 @@ def messageHandler(request):
             reply = msgSender
             
             # send the reply
-            client.send_text(midSender, reply)
+            client.send_text(to_mid = midSender, text = reply)
             
     
