@@ -19,4 +19,13 @@ def messageHandler(request):
     elif request.method == 'POST':
         pass
     
-    return HttpResponse(request.POST)
+    # get the sender's mid and message
+    midSender = request.POST['content']['from']
+    msgSender = request.POST['content']['text']
+    
+    # construct the reply
+    reply = msgSender
+    
+    # send the reply
+    client.send_text(midSender, reply)
+    
