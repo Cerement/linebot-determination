@@ -22,8 +22,8 @@ def messageHandler(request):
     
     # get the sender's mid and message
     receive = Receive(request.body)
-    midSender = receive['content']['from']
-    msgSender = receive['content']['text']
+    midSender = receive[0]['content']['from']
+    msgSender = receive[0]['content']['text']
     
     # construct the reply
     reply = msgSender
