@@ -24,31 +24,31 @@ def getHelpMsg():
 def getRandomAnswer():
     "Return 1 (true), -1 (false) or 0 (don't know)"
     
-    return numpy.random.choise([1, -1, 0], [0.45, 0.45, 0.1])
+    return numpy.random.choice([1, -1, 0], [0.45, 0.45, 0.1])
 
 def getRandomPrefix():
     
-    return numpy.random.choise(PredefinedTexts.prefixes)
+    return numpy.random.choice(PredefinedTexts.prefixes)
 
 def getRandomPostfix():
     
-    return numpy.random.choise(PredefinedTexts.postfixes)
+    return numpy.random.choice(PredefinedTexts.postfixes)
 
 def getRandomNoAnswer():
     
-    return numpy.random.choise(PredefinedTexts.noAnswers)
+    return numpy.random.choice(PredefinedTexts.noAnswers)
 
 def getRandomEmoji():
     
-    return numpy.random.choise(PredefinedTexts.emojis)
+    return numpy.random.choice(PredefinedTexts.emojis)
 
 def getRandomHint(): # for cases not recognized
     
-    return numpy.random.choise(PredefinedTexts.hintMsgs)
+    return numpy.random.choice(PredefinedTexts.hintMsgs)
 
 def getRandomCryMsg(): # QQ
     
-    return numpy.random.choise(PredefinedTexts.cryMsgs)
+    return numpy.random.choice(PredefinedTexts.cryMsgs)
 
 # /callback/
 def messageHandler(request):
