@@ -20,8 +20,8 @@ def messageHandler(request):
         pass
     
     # get the sender's mid and message
-    midSender = request.POST['content']['from']
-    msgSender = request.POST['content']['text']
+    midSender = request.POST['from']
+    msgSender = request.POST['text']
     
     # construct the reply
     reply = msgSender
