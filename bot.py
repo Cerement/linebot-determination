@@ -24,7 +24,7 @@ def getHelpMsg():
 def getRandomAnswer():
     "Return 1 (true), -1 (false) or 0 (don't know)"
     
-    return numpy.random.choice([1, -1, 0], [0.45, 0.45, 0.1])
+    return numpy.random.choice([1, -1, 0], p=[0.45, 0.45, 0.1])
 
 def getRandomPrefix():
     
