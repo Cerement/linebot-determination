@@ -32,7 +32,7 @@ def messageHandler(request):
         if isinstance(message['content'], messages.TextMessage):
             
             # get the sender's mid and message
-            msgSender = receive['content']['text']
+            msgSender = message['content']['text']
             
             # construct the reply
             reply = msgSender
