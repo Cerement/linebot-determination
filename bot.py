@@ -93,7 +93,7 @@ def messageHandler(request):
                     reply = getRandomPrefix() + ch + getRandomPostfix()
                     
                 elif ans == -1: # no
-                    reply = getRandomPrefix() + u'不' + ch + getRandomPostfix
+                    reply = getRandomPrefix() + u'不' + ch + getRandomPostfix()
                     
                 elif ans == 0: # no answer
                     reply = getRandomNoAnswer()
