@@ -51,7 +51,7 @@ def messageHandler(request):
         if isinstance(message['content'], messages.TextMessage):
             
             # get the sender's mid and message
-            msgSender = message['content']['text'].encode('utf-8')
+            msgSender = message['content']['text']
             
             # analyze the message and construct the reply
             reply = ''
