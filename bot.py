@@ -1,4 +1,5 @@
 from linebot.client import LineBotClient
+from linebot.receives import Receive
 from django.http import HttpResponse
 
 import os
@@ -20,8 +21,9 @@ def messageHandler(request):
         pass
     
     # get the sender's mid and message
-    midSender = request.POST['from']
-    msgSender = request.POST['text']
+    receive = Receive(request.body)
+    midSender = receive['content']['from']
+    msgSender = receive['content']['text']
     
     # construct the reply
     reply = msgSender
