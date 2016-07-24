@@ -13,4 +13,10 @@ client = LineBotClient(**credentials)
 
 def messageHandler(request):
     
-    return HttpResponse(str(request))
+    # check http request method
+    if request.method == 'GET':
+        return HttpResponse()
+    elif request.method == 'POST':
+        pass
+    
+    return HttpResponse(request.POST)
