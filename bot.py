@@ -51,16 +51,11 @@ def messageHandler(request):
         if isinstance(message['content'], messages.TextMessage):
             
             # get the sender's mid and message
-            msgSender = message['content']['text']
+            msgSender = message['content']['text'].encode('utf-8')
             
             # analyze the message and construct the reply
             reply = ''
-            
-            CHINESE_UNICODE_RANGE = r'\u2E80-\u9FFF'
-            
-            matchObjABA = re.search(r'([' + CHINESE_UNICODE_RANGE + r'])不\1', msgSender) # 好不好 
-            #matchObjAQ =  # 好...嗎
-            
+            matchObjABA = re.search(ur'([\u2E80-\u9FFF])不\1', msgSender) # 好不好 
             if matchObjABA: # 好不好
                 ch = matchObjABA.group(1) # 好
                 reply = ch
