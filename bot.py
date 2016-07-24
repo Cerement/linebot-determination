@@ -23,6 +23,7 @@ def messageHandler(request):
     # get the sender's mid and message
     receive = Receive(request.body)
     print(receive[0])
+    return HttpResponse()
     """
     midSender = receive[0].to_mid
     msgSender = receive[0].message
