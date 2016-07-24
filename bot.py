@@ -4,8 +4,9 @@ from linebot.client import LineBotClient
 from linebot.receives import Receive
 from linebot import messages
 from django.http import HttpResponse
+from predefinedtexts import PredefinedTexts
 
-import os, re
+import os, re, numpy
 
 credentials = {
     'channel_id': str(os.environ.get('Channel_ID', 0)),
@@ -16,20 +17,38 @@ credentials = {
 client = LineBotClient(**credentials)
 
 # support functions
-def getRandomBooleen():
-    pass
+def getHelpMsg():
+    
+    return PredefinedTexts.helpMsg
+
+def getRandomAnswer():
+    "Return 1 (true), -1 (false) or 0 (don't know)"
+    
+    return numpy.random.choise([1, -1, 0], [0.45, 0.45, 0.1])
 
 def getRandomPrefix():
-    pass
+    
+    return numpy.random.choise(PredefinedTexts.prefixes)
 
 def getRandomPostfix():
-    pass
+    
+    return numpy.random.choise(PredefinedTexts.postfixes)
+
+def getRandomNoAnswer():
+    
+    return numpy.random.choise(PredefinedTexts.noAnswers)
 
 def getRandomEmoji():
-    pass
+    
+    return numpy.random.choise(PredefinedTexts.emojis)
 
 def getRandomHint(): # for cases not recognized
-    pass
+    
+    return numpy.random.choise(PredefinedTexts.hintMsgs)
+
+def getRandomCryMsg(): # QQ
+    
+    return numpy.random.choise(PredefinedTexts.cryMsgs)
 
 # /callback/
 def messageHandler(request):
@@ -55,13 +74,34 @@ def messageHandler(request):
             
             # analyze the message and construct the reply
             reply = ''
+            matchObjHelp = re.search(ur'^你是誰$', msgSender) # help
+            matchObjCry = re.search(r'^QQ$', msgSender) # QQ
             matchObjABA = re.search(ur'([\u2E80-\u9FFF])不\1', msgSender) # 好不好 
-            if matchObjABA: # 好不好
+            
+            if matchObjHelp: # help
+                reply = getHelpMsg()
+                
+            elif matchObjCry: # QQ
+                reply = getRandomCryMsg()
+            
+            elif matchObjABA: # 好不好
                 ch = matchObjABA.group(1) # 好
-                reply = ch
+                
+                # generate random answer
+                ans = getRandomAnswer()
+                if ans == 1: # yes
+                    reply = getRandomPrefix() + ch + getRandomPostfix()
+                    
+                elif ans == -1: # no
+                    reply = getRandomPrefix() + u'不' + ch + getRandomPostfix
+                    
+                elif ans == 0: # no answer
+                    reply = getRandomNoAnswer()
+                    
+                reply += ' ' + getRandomEmoji()
             
             else: # not a true/false question
-                reply = u'我不太懂你的意思'
+                reply = getRandomHint() + ' ' + getRandomEmoji()
             
             # send the reply
             client.send_text(to_mid = midSender, text = reply)
