@@ -40,4 +40,6 @@ def messageHandler(request):
             # send the reply
             client.send_text(to_mid = midSender, text = reply)
             
+    return HttpResponse()
+            
     
